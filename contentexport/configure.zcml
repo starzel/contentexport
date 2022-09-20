@@ -1,0 +1,30 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Custom content-export using collective.exportimport"
+      directory="profiles/default"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <browser:page
+      name="export_content"
+      for="zope.interface.Interface"
+      class=".export_content.CustomExportContent"
+      layer="contentexport.interfaces.IContentexportLayer"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="export_all"
+      for="zope.interface.Interface"
+      class=".views.ExportAll"
+      template="templates/export_all.pt"
+      permission="cmf.ManagePortal"
+      />
+
+</configure>
