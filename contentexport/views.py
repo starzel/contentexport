@@ -8,13 +8,15 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+TYPES_TO_EXPORT = []
+
 
 class ExportAll(BrowserView):
 
     def __call__(self):
         request = self.request
         if not request.form.get("form.submitted", False):
-            return self.template()
+            return self.index()
 
         qi = api.portal.get_tool("portal_quickinstaller")
         if not qi.isProductInstalled("contentimport"):
